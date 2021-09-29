@@ -1,4 +1,4 @@
-## Start code for the class demo related to use fetch up against a REST-API
+## Start code for the class demo related to how to use fetch up against a REST-API
 
 Make sure to:
  - Have watched the videos related to this lecture before we meet in the class
