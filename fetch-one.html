@@ -40,11 +40,34 @@
                 <label for="id" class="form-label">Enter ID to search for</label>
                 <input type="text" class="form-control" id="search-id">
             </div>
-            <button class="btn btn-secondary" id="bnt-find">Find User</button>
+            <button class="btn btn-secondary" id="btn-find">Find User</button>
         </form>
     </div>
 </div>
 <a href="index.html">Back</a>
 
+<script>
+    const URL = "http://localhost:3333/api/users";
+    document.getElementById("btn-find").onclick = (evt)=> {
+        evt.preventDefault()
+        const idForUserToFind = document.getElementById("search-id").value
+        fetch(URL+"/"+idForUserToFind)
+        .then(res => {
+            if(res.status ==404){
+                throw `User with ID ${idForUserToFind} not found`
+            }
+            return res.json()
+        })
+        .then(user=> {
+            document.getElementById("user-id").innerText = user.id
+            document.getElementById("input-age").value = user.age
+            document.getElementById("input-name").value = user.name
+            document.getElementById("input-gender").value = user.gender
+            document.getElementById("input-email").value = user.email
+        })
+        .catch(e=>alert(e+"\nIn real life PLEEEEEEEASE dont report errors like this ;-)"))
+    }
+
+</script>
 </body>
 </html>
